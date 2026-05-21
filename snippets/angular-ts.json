@@ -1,0 +1,20 @@
+{
+  "Angular Redirection Route": {
+    "prefix": "a-route-path-redirect",
+    "body": [
+      "{",
+      "\tpath: '$1',",
+      "\tpathMatch: 'full',",
+      "\tredirectTo: '$2'",
+      "},"
+    ]
+  },
+  "Angular Comodin Route": {
+    "prefix": "a-route-path-comodin",
+    "body": ["{", "\tpath: '**',", "\tcomponent: $1", "}"]
+  },
+  "Angular Route - Lazily Loaded Components and Routes ": {
+    "prefix": "a-route-path-lazy-default",
+    "body": ["{", "\tpath: '$1',", "\tloadComponent: () => import('$2')", "},"]
+  }
+}
