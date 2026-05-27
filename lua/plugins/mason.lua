@@ -16,36 +16,49 @@ return {
     opts = function(_, opts)
       opts.ensure_installed = opts.ensure_installed or {}
 
-      -- Lista tus nuevos servidores aquí
-      vim.list_extend(opts.ensure_installed, {
-        -- LSP SERVERS
-        "vimls",
-        "html",
-        "cssls",
-        "css_variables",
-        "emmet_language_server",
-        "rnix",
-        "laravel_ls",
-      })
+      -- Add your new LSP Servers here
+      local lspServers = {
+        vimls = {
+          filetypes = { "vim" },
+        },
+        html = {
+          filetypes = { "html", "blade", "php", "vue" }, -- útil for Laravel
+        },
+        cssls = {
+          filetypes = { "css", "scss", "less" },
+        },
+        emmet_language_server = {
+          filetypes = { "html", "css", "blade", "javascriptreact", "typescriptreact", "vue" },
+        },
+        rnix = {
+          filetypes = { "nix" },
+        },
+        laravel_ls = {
+          filetypes = { "php", "blade" },
+        },
+      }
+
+      -- Installing LSP Servers with mason-lspconfig
+      local lspServerNames = vim.tbl_keys(lspServers)
+      vim.list_extend(opts.ensure_installed, lspServerNames)
+
+      -- Enabling LSP Servers
+      for serverName, config in pairs(lspServers) do
+        vim.lsp.config(serverName, config)
+        vim.lsp.enable(serverName)
+      end
     end,
   },
   {
     "mason-org/mason.nvim",
     opts = function(_, opts)
-      -- opts.ui.icons = opts.ui.icons or {}
-      -- opts.ui.icons = {
-      --   package_installed = "✓",
-      --   package_pending = "➜",
-      --   package_uninstalled = "✗",
-      -- }
-
       opts.ensure_installed = opts.ensure_installed or {}
       vim.list_extend(opts.ensure_installed, {
-        -- FORMATTERS
+        -- Formatters
         "prettier",
         "blade-formatter",
         "yamlfix",
-        -- LINTERS
+        -- Linters
         "eslint_d",
         "statix",
         "yamllint",

@@ -25,7 +25,8 @@ return {
     },
   },
   config = function()
-    require("nvim-treesitter").install({
+    local ts = require("nvim-treesitter")
+    local languages = {
       "desktop",
       "htmldjango",
       "luadoc",
@@ -33,6 +34,25 @@ return {
       "nix",
       "scss",
       "tsx",
+      "blade",
+    }
+    ts.install(languages)
+
+    -- Treesitter features for installed languages must be enabled manually
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = languages,
+      callback = function()
+        -- Enable native Neovim treesitter highlighting
+        vim.treesitter.start()
+
+        -- Configure code folding
+        vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+        vim.wo.foldmethod = "expr"
+        vim.wo.foldlevel = 99
+
+        -- Enable treesitter-based indentation
+        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+      end,
     })
   end,
 }

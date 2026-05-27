@@ -111,6 +111,8 @@ Close and open the terminal
 
 17. A Nerd Font(v3.0 or greater)
 
+18. You must have PHP installed in your system.
+
 ## Installing LazyExtras
 
 | Plugins              | Languages             |
