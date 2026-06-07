@@ -1,0 +1,25 @@
+{
+  "Visual Studio Code Snippet": {
+    "prefix": "vscs",
+    "body": [
+      "\"$1\": {",
+      "\t\"prefix\": \"$2\",",
+      "\t\"body\": [",
+      "\t\t\"$3\"",
+      "\t]",
+      "},$0"
+    ]
+  },
+  "JSON Value": {
+    "prefix": "jval",
+    "body": ["\"${1:key}\": \"${2:value}\",$0"]
+  },
+  "JSON object": {
+    "prefix": "jobj",
+    "body": ["\"${1:key}\": {", "\n$2", "},$0"]
+  },
+  "JSON array": {
+    "prefix": "jarr",
+    "body": ["\"${1:key}\": [", "\n$2", "},$0"]
+  }
+}

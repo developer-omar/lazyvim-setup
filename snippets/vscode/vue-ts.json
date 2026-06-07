@@ -2,7 +2,7 @@
   "Vue 3 defining a composable": {
     "prefix": "v3composable",
     "body": [
-      "import {  ref } from \"vue\";\n",
+      "import { ref } from \"vue\";\n",
       "const use${1:ComposableName} = () => {",
       "\t$2\n",
       "\treturn {",

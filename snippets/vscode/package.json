@@ -7,7 +7,7 @@
     "snippets": [
       {
         "language": "json",
-        "path": "./vscode-snippets.json"
+        "path": "./json.json"
       },
       {
         "language": [
@@ -38,6 +38,14 @@
       {
         "language": "typescriptreact",
         "path": "./react.json"
+      },
+      {
+        "language": "typescriptreact",
+        "path": "./typescript.json"
+      },
+      {
+        "language": "typescriptreact",
+        "path": "./react-ts.json"
       },
       {
         "language": "typescript",
