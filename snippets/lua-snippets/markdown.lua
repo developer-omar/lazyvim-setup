@@ -5,25 +5,45 @@ local rep = require("luasnip.extras").rep
 local t = ls.text_node
 local fmt = require("luasnip.extras.fmt").fmt
 local f = ls.function_node
+local d = ls.dynamic_node
+local sn = ls.snippet_node
 
 local function generate_table(args)
-  local cols = tonumber(args[1]) or 2
-  local rows = tonumber(args[2]) or 2
-  local header = "|"
-  local separator = "|"
+  local cols = tonumber(args[1][1]) or 2
+  local rows = tonumber(args[2][1]) or 2
+  local nodes = {}
+
+  -- 1. Heading
+  table.insert(nodes, t("|"))
   for c = 1, cols do
-    header = header .. " Col" .. c .. " |"
-    separator = separator .. "---|"
+    table.insert(nodes, t(" "))
+    table.insert(nodes, i(c, "Col" .. c)) -- Nodos de inserción para el header
+    table.insert(nodes, t(" |"))
   end
-  local lines = { header, separator }
+  table.insert(nodes, t({ "", "|" }))
+
+  -- 2. Markdown Separator
+  for c = 1, cols do
+    table.insert(nodes, t("---|"))
+  end
+  table.insert(nodes, t({ "", "" }))
+
+  -- 3. Rows
+  local count = cols + 1
   for r = 1, rows do
-    local row = "|"
+    table.insert(nodes, t("|"))
     for c = 1, cols do
-      row = row .. " R" .. r .. "C" .. c .. " |"
+      table.insert(nodes, t(" "))
+      table.insert(nodes, i(count, "R" .. r .. "C" .. c))
+      table.insert(nodes, t(" |"))
+      count = count + 1
     end
-    table.insert(lines, row)
+    if r < rows then
+      table.insert(nodes, t({ "", "" }))
+    end
   end
-  return lines
+
+  return sn(nil, nodes)
 end
 
 return {
@@ -85,19 +105,9 @@ return {
     t({ "", "```" }),
   }),
 
-  -- Tables
-  s({ trig = "table", desc = "Basic table" }, {
-    t("| "),
-    i(1, "Column1"),
-    t(" | "),
-    i(2, "Column2"),
-    t(" |"),
-    t({ "", "|---|---|", "" }),
-    t("| "),
-    i(3, "Data1"),
-    t(" | "),
-    i(4, "Data2"),
-    t(" |"),
+  s({ trig = "hr", dscr = "Horizontal Rule (---)" }, {
+    t({ "", "---", "" }),
+    i(0),
   }),
 
   -- Blockquote
@@ -145,6 +155,21 @@ return {
     t("***"),
   }),
 
+  -- Tables
+  s({ trig = "table", desc = "Basic table" }, {
+    t("| "),
+    i(1, "Column1"),
+    t(" | "),
+    i(2, "Column2"),
+    t(" |"),
+    t({ "", "|---|---|", "" }),
+    t("| "),
+    i(3, "Data1"),
+    t(" | "),
+    i(4, "Data2"),
+    t(" |"),
+  }),
+
   -- Generate a table
   s({ trig = "tablegen", desc = "Generate table with rows and columns" }, {
     t("Columns: "),
@@ -152,11 +177,6 @@ return {
     t({ "", "Rows: " }),
     i(2, "2"),
     t({ "", "" }),
-    f(generate_table, { 1, 2 }),
-  }),
-
-  s({ trig = "hr", dscr = "Horizontal Rule (---)" }, {
-    t({ "", "---", "" }),
-    i(0),
+    d(3, generate_table, { 1, 2 }),
   }),
 }

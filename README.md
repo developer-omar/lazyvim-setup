@@ -113,6 +113,10 @@ Close and open the terminal
 
 18. You must have PHP installed in your system.
 
+    ```bash
+    sudo apt install php-cli php-common php-curl php-zip php-mbstring php-xml php-gd php-pear php-bcmath -y
+    ```
+
 ## Installing LazyExtras
 
 | Plugins              | Languages             |
