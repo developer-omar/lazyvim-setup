@@ -56,3 +56,5 @@ end
 vim.keymap.set("n", "gB", function()
   vim.cmd("silent !" .. open_command .. " " .. vim.fn.expand("%"))
 end, { desc = "Open File In The Web Browser" })
+-- File type
+vim.keymap.set("n", "<leader>bt", "<cmd>set filetype?<cr>", { desc = "File Type Of Current Buffer" })
