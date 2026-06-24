@@ -12,9 +12,9 @@ return {
     desc = "Destructuring An Object",
   }, {
     t("const { "),
-    i(1),
+    i(0),
     t(" } = "),
-    i(2, "object"),
+    i(1, "object"),
     t(";"),
   }),
 
@@ -23,9 +23,9 @@ return {
     desc = "Destructuring An Array",
   }, {
     t("const [ "),
-    i(1),
+    i(0),
     t(" ] = "),
-    i(2, "array"),
+    i(1, "array"),
     t(";"),
   }),
 

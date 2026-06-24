@@ -7,6 +7,14 @@ local fmt = require("luasnip.extras.fmt").fmt
 -- local f = ls.function_node -- Importamos el nodo de función
 
 return {
+  s({
+    trig = "impvt",
+    desc = "Import Vitest",
+  }, {
+    t("import { "),
+    i(1),
+    t(' } from "vitest";'),
+  }),
   s(
     {
       trig = "vtd",
@@ -27,7 +35,7 @@ return {
 
   s(
     {
-      trig = "vtda",
+      trig = "vtad",
       desc = "Vitest - Async Describe",
     },
     fmt(
@@ -99,7 +107,7 @@ return {
 
   s(
     {
-      trig = "vtta",
+      trig = "vtat",
       desc = "Vitest - Async Test",
     },
     fmt(
@@ -117,7 +125,7 @@ return {
 
   s(
     {
-      trig = "vt-angular-component",
+      trig = "vtngcomp",
       desc = "Vitest Angular Component",
     },
     fmt(
@@ -157,7 +165,7 @@ return {
 
   s(
     {
-      trig = "vt-angular-service",
+      trig = "vtngserv",
       desc = "Vitest Angular Service",
     },
     fmt(
