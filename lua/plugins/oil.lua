@@ -10,6 +10,7 @@ return {
       view_options = {
         show_hidden = true,
       },
+      delete_to_trash = true,
     },
     -- Optional dependencies
     dependencies = { { "nvim-mini/mini.icons", opts = {} } },

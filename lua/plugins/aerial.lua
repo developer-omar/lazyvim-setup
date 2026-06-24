@@ -10,7 +10,7 @@ return {
   },
   opts = function(_, opts)
     -- opts.layout = opts.layout or {}
-    opts.layout.width = 150
+    opts.layout.width = 280
     -- Keymap to open the sidebar
     vim.keymap.set("n", "<leader>cs", "<cmd>AerialToggle<cr>")
     -- A list of all symbols to display. Set to false to display all symbols.

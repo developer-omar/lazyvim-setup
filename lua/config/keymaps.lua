@@ -6,7 +6,8 @@
 --  See `:help hlsearch`
 
 -- vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
-vim.keymap.set("i", "jk", "<ESC>")
+vim.keymap.set("i", "jk", "<esc>", { desc = "Escape From Inserte Mode" })
+vim.keymap.set("t", "jk", "<c-\\><c-n>", { desc = "Escape From Terminal Mode" })
 -- vim.keymap.set("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg" })
 
 -- Paste over currently selected text without yanking it
@@ -44,6 +45,10 @@ vim.keymap.set("s", "P", "<c-o>c" .. "P", { noremap = true })
 -- Avoid exiting selection mode when erasing selected text with the Backspace key during snippet expansion.
 vim.keymap.set("s", "<bs>", "<c-o>c", { noremap = true })
 
+-- Paste in a new line
+vim.keymap.set("n", "<c-p>", "<cmd>pu<cr>", { desc = "Paste In A New Line", silent = true })
+vim.keymap.set("n", "<c-P>", "<s-o><esc>p", { desc = "Paste In A Line Before", silent = true })
+
 -- Define the open command based on OS to open a file in the web browser
 local open_command
 if vim.fn.has("mac") == 1 then
@@ -56,5 +61,6 @@ end
 vim.keymap.set("n", "gB", function()
   vim.cmd("silent !" .. open_command .. " " .. vim.fn.expand("%"))
 end, { desc = "Open File In The Web Browser" })
+
 -- File type
 vim.keymap.set("n", "<leader>bt", "<cmd>set filetype?<cr>", { desc = "File Type Of Current Buffer" })
